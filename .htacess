@@ -1,3 +1,7 @@
 RewriteEngine On
-RewriteCond %{HTTP_HOST} ^estamoscasando.com.br
-RewriteRule ^ http://www.estamoscasando.com.br%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ http://www.estamoscasando.com.br/$1 [L,R=301]
+
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://www.estamoscasando.com.br/$1 [L,R=301]
