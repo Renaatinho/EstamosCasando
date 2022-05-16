@@ -933,6 +933,25 @@
         };
     }
 
+    // Script for copy to clipboard
+
+    function copyToClipboard(elemento) {
+        elemento[0].select();
+        elemento[0].setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(elemento.val());
+        $('#copyClipboard').tooltip('hide').attr("data-original-title", "Copiado para área de transferência").tooltip('show');
+    }
+
+    $(document).on('add.cards', function(event) {
+        
+        if ($('#copyClipboard').length != 0) {
+            $('#copyClipboard').off('click').on('click', function(event) {
+                copyToClipboard($('#chavePixInput'));
+            }).tooltip();
+            
+        }
+    });
+
     // script for flip images
     function bendBottomCorner() {
         $(".flip-card:not(.builderCard)").each(function() {
